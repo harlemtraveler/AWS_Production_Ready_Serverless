@@ -7,5 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Timothy Keaveny",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.0",
+    "co": "^4.6.0",
+    "fs": "0.0.1-security",
+    "mustache": "^3.1.0",
+    "serverless-pseudo-parameters": "^2.4.0",
+    "superagent": "^5.1.0",
+    "superagent-promise": "^1.1.0"
+  }
 }
