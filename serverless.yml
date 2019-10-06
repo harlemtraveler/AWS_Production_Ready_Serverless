@@ -1,8 +1,21 @@
 service: business-search-app
 
+plugins:
+  - serverless-pseudo-parameters
+
 provider:
   name: aws
   runtime: nodejs10.x
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: 
+        - "dynamodb:Scan"
+      Resource: 
+        - "arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants"
+        - "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:*"
+    # - Effect: "Allow"
+    #   Action: dynamodb:Scan
+    #   Resource: "arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants/index/*"
 
 functions:
   get-index:
@@ -11,3 +24,28 @@ functions:
       - http:
           path: /
           method: get
+
+  get-restaurants:
+    handler: functions/get-restaurants.handler
+    events:
+      - http:
+          path: /restaurants/
+          method: get
+    environment:
+      restaurants_table: restaurants
+
+resources:
+  Resources:
+    restaurantsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: restaurants
+        AttributeDefinitions:
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: name
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10

@@ -9,6 +9,7 @@
   "author": "Timothy Keaveny",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.543.0",
     "bluebird": "^3.7.0",
     "co": "^4.6.0",
     "fs": "0.0.1-security",
