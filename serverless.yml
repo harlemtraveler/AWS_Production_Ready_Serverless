@@ -13,9 +13,7 @@ provider:
       Resource: 
         - "arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants"
         - "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:*"
-    # - Effect: "Allow"
-    #   Action: dynamodb:Scan
-    #   Resource: "arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants/index/*"
+
 
 functions:
   get-index:
@@ -24,6 +22,8 @@ functions:
       - http:
           path: /
           method: get
+    environment:
+      restaurants_api: "https://ozk1g4x3w2.execute-api.us-east-1.amazonaws.com/dev/restaurants"
 
   get-restaurants:
     handler: functions/get-restaurants.handler
@@ -31,6 +31,7 @@ functions:
       - http:
           path: /restaurants/
           method: get
+          authorizer: aws_iam
     environment:
       restaurants_table: restaurants
 
