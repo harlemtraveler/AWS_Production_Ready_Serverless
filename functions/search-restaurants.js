@@ -1,7 +1,7 @@
 'use strict';
 
-const co = require("co");
-const AWS = require("aws-sdk");
+const co = require('co');
+const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const defaultResults = process.env.defaultResults || 8;
@@ -11,8 +11,8 @@ function* findRestaurantsByTheme(theme, count) {
   let req = {
 		TableName: tableName,
 		Limit: count,
-    FilterExpression: "contains(themes, :theme)",
-    ExrpessionAttributeValues: { ":theme": theme }
+    FilterExpression: 'contains(themes, :theme)',
+    ExrpessionAttributeValues: { ':theme': theme }
 	};
 
   let resp = yield dynamodb.scan(req).promise();

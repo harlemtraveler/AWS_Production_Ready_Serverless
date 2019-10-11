@@ -7,17 +7,17 @@ provider:
   name: aws
   runtime: nodejs10.x
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: Allow
       Action: 
-        - "dynamodb:Scan"
+        - dynamodb:Scan
       Resource: 
-        - "arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants"
-        - "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:*"
-    - Effect: "Allow"
+        - arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants
+        - arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:*
+    - Effect: Allow
       Action: 
-        - "execute-api:Invoke"
+        - execute-api:Invoke
       Resource: 
-        - "arn:aws:execute-api:#{AWS::Region}:#{AWS::AccountId}:*/*/GET/restaurants"
+        - arn:aws:execute-api:#{AWS::Region}:#{AWS::AccountId}:*/*/GET/restaurants
 
 
 functions:
@@ -28,7 +28,9 @@ functions:
           path: /
           method: get
     environment:
-      restaurants_api: "https://ozk1g4x3w2.execute-api.us-east-1.amazonaws.com/dev/restaurants"
+      restaurants_api: https://ozk1g4x3w2.execute-api.us-east-1.amazonaws.com/dev/restaurants
+      cognito_user_pool_id: us-east-1_CeZvkfvM4
+      cognito_client_id: 6biiie5d0nnlnv98bhvhk43t2d
 
   get-restaurants:
     handler: functions/get-restaurants.handler
@@ -47,12 +49,13 @@ functions:
           path: /restaurants/search
           method: post
           authorizer:
-            arn: "arn:aws:cognito-idp:us-east-1:829622096880:userpool/us-east-1_CeZvkfvM4"
+            arn: arn:aws:cognito-idp:us-east-1:829622096880:userpool/us-east-1_CeZvkfvM4
     environment:
       restaurants_table: restaurants
 
 resources:
   Resources:
+    # The resource may actually be "restaurantsTables"
     restaurantsTable:
       Type: AWS::DynamoDB::Table
       Properties:

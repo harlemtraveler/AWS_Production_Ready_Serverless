@@ -1,7 +1,8 @@
 'use strict';
 
-const co = require("co");
-const AWS = require("aws-sdk");
+const co = require('co');
+const AWS = require('aws-sdk');
+const Mustache = require('mustache');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const defaultResults = process.env.defaultResults || 8;
@@ -22,7 +23,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
 	let response = {
 		statusCode: 200,
 		body: JSON.stringify(restaurants)
-	};
+	}
 
   callback(null, response);
 });
