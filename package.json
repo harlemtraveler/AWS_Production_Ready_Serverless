@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "integration-test": "./node_modules/.bin/mocha tests/test_cases --reporter spec"
   },
   "author": "Timothy Keaveny",
   "license": "ISC",
@@ -12,8 +12,10 @@
     "amazon-cognito-identity-js": "^3.1.0",
     "aws-sdk": "^2.543.0",
     "aws4": "^1.8.0",
+    "awscred": "^1.4.2",
     "bluebird": "^3.7.0",
     "chai": "^4.2.0",
+    "cheerio": "^1.0.0-rc.3",
     "co": "^4.6.0",
     "fs": "0.0.1-security",
     "lodash": "^4.17.15",
