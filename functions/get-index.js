@@ -41,7 +41,7 @@ function* getRestaurants() {
     .set('Authorization', opts.headers['Authorization']);
 
   if (opts.headers['X-Amz-Security-Token']) {
-    httpReq.set('X-Amz-Security-Token', opts.headers['X-Amz-Security-Token'])
+    httpReq.set('X-Amz-Security-Token', opts.headers['X-Amz-Security-Token']);
   }
 
   return (yield httpReq).body;
@@ -68,7 +68,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
     statusCode: 200,
     body: html,
     headers: {
-      'Content-Type': 'text/html; charset=UTF-8'
+      'content-type': 'text/html; charset=UTF-8'
     }
   };
 
