@@ -19,6 +19,7 @@ let init = co.wrap(function* () {
   process.env.cognito_user_pool_id = "cognito_user_pool_id"; // dummy value
   process.env.cognito_client_id = "cognito_client_id"; // dummy value
 
+  // The "bluebird" pkg added the "loadAsync()" function to "awscred"
   let cred = (yield awscred.loadAsync()).credentials;
 
   process.env.AWS_ACCESS_KEY_ID = cred.accessKeyId;
