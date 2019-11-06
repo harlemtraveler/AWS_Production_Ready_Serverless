@@ -14,6 +14,7 @@ const awsRegion = process.env.AWS_Region;
 const cognitoUserPoolId = process.env.cognito_user_pool_id;
 const cognitoClientId = process.env.cognito_client_id;
 const restaurantsApiRoot = process.env.restaurants_api;
+const ordersApiRoot = process.env.orders_api;
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 var html;
@@ -33,18 +34,20 @@ function* getRestaurants() {
     path: url.pathname
   };
 
+  // START: WAS DOING SOMETHING HERE
   if (!process.env.AWS_ACCESS_KEY_ID) {
     let cred = (yield awscred.loadAsync()).credentials;
 
     process.env.AWS_ACCESS_KEY_ID = cred.accessKeyId;
     process.env.AWS_SECRET_ACCESS_KEY = cred.secretAccessKey;
 
+    // NOTE: ADD Logic to fetch user-cred-obj's "sessionToken" property
     if (cred.sessionToken) {
       process.env.AWS_SESSION_TOKEN = cred.sessionToken;
     }
 
   }
-
+  // END: WAS DOING SOMETHING HERE
 
   aws4.sign(opts);
 
@@ -73,7 +76,8 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
     awsRegion,
     cognitoUserPoolId,
     cognitoClientId,
-    searchUrl: `${restaurantsApiRoot}/search`
+    searchUrl: `${restaurantsApiRoot}/search`,
+    placeOrderUrl: `${ordersApiRoot}`
   };
   // loads template, passing restaurants as params
   let html = Mustache.render(template, view);
