@@ -2,7 +2,7 @@
 
 const co = require('co');
 const AWS = require('aws-sdk');
-const kinesis = AWS.Kinesis();
+const kinesis = new AWS.Kinesis();
 const chance = require('chance').Chance(); // installed as a prod dependency!!!
 const streamName = process.env.order_events_stream;
 
