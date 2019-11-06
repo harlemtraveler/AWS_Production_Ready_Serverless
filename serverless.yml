@@ -88,7 +88,7 @@ resources:
           WriteCapacityUnits: 10
     
     orderEventsStream:
-      Type: AWS::Kenisis::Stream
+      Type: AWS::Kinesis::Stream
       Properties:
         Name: order-events
         ShardCount: 1
