@@ -58,9 +58,9 @@ let viaHttp = co.wrap(function* (relPath, method, opts) {
   console.log(`invoking via HTTP ${method} ${url}`);
 
   // DEBUG - TEST LOGIC START
-  console.log(`[*] The passed URL: ${url}`);
-  console.log(`[*] The passed Root: ${root}`);
-  console.log(`[*] The passed Relative Path: ${relPath}`);
+  // console.log(`[*] The passed URL: ${url}`);
+  // console.log(`[*] The passed Root: ${root}`);
+  // console.log(`[*] The passed Relative Path: ${relPath}`);
   // DEBUG - TEST LOGIC END
 
   try {
@@ -78,6 +78,10 @@ let viaHttp = co.wrap(function* (relPath, method, opts) {
       signHttpRequest(url, httpReq);
     }
 
+    let authHeader = _.get(opts, "auth");
+    if (authHeader) {
+      httpReq.set('Authorization', authHeader);
+    }
     // Returned HTTP Obj must be compatible with what "handler" func returns.
     // This is because our test cases are written against that contract.
     // The "respondFrom" helper function will take care of this transformation:
@@ -140,13 +144,14 @@ let we_invoke_get_restaurants = co.wrap(function* () {
   return res;
 });
 
-let we_invoke_search_restaurants = co.wrap(function* (theme) {
+let we_invoke_search_restaurants = co.wrap(function* (user, theme) {
   let body = JSON.stringify({ theme });
+  let auth = user.idToken;
 
   let res = 
     mode === 'handler'
       ? viaHandler({ body }, 'search-restaurants')
-      : viaHttp('restaurants/search', 'POST', { body })
+      : viaHttp('restaurants/search', 'POST', { body, auth })
 
   return res;
 });
