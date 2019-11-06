@@ -6,7 +6,7 @@ const kinesis = new AWS.Kinesis();
 const chance = require('chance').Chance(); // installed as a prod dependency!!!
 const streamName = process.env.order_events_stream;
 
-module.exports.handler = co.wrap(function* (events, context, callback) {
+module.exports.handler = co.wrap(function* (event, context, callback) {
   // Here, we're assuming that the restaurant's name is passed in body of POST
   let restaurantName = JSON.parse(event.body).restaurantName;
 
