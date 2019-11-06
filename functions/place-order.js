@@ -11,7 +11,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
   let restaurantName = JSON.parse(event.body).restaurantName;
 
   // When the req is auth'd by Cognito User Pools, populate the "request Context" of an event with the user's email
-  let userEmail = events.requestContext.authorizer.claims.email;
+  let userEmail = event.requestContext.authorizer.claims.email;
 
   // Generate a new "orderId"
   let orderId = chance.guid();
