@@ -15,7 +15,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
 
   // Generate a new "orderId"
   let orderId = chance.guid();
-  console.log(`placing order ID [${orderId}] to [${restaurantName}] from user [${userEmail}]`);
+  console.log(`[+] placing order ID [${orderId}] to [${restaurantName}] from user [${userEmail}]`);
 
 	// The shape of the data blob
   let data = {
@@ -37,7 +37,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
   // Publish the Events to Kinesis using the "putRecord" function...which can yield on its Promise:
   yield kinesis.putRecord(putReq).promise();
 
-  console.log("published 'order_palced' event to Kinesis");
+  console.log("[+] published 'order_palced' event to Kinesis");
 
 	// Repsonse body expected
   let response = {
