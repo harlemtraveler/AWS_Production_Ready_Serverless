@@ -35,7 +35,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
     // Using the "orderId" as the partitionKey 
     // (i.e. this is so that events related to the same order always process in sequence)
     let putRecordReq = {
-      Data: JSMON.stringify(data),
+      Data: JSON.stringify(data),
       PartitionKey: order.orderId,
       StreamName: streamName
     };
