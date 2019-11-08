@@ -132,7 +132,7 @@ resources:
         DisplayName: restaurant-notification
         TopicName: restaurant-notification
     
-        userNotificationTopic:
+    userNotificationTopic:
       Type: AWS::SNS::Topic
       Properties:
         DisplayName: user-notification
