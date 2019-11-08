@@ -25,7 +25,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
     yield sns.publish(pubReq).promise();
 
     // adding a simple log message
-    console.log(`[+] notified restaurant [${order.restaurantsName}] of order [${order.orderId}]`);
+    console.log(`[+] notified restaurant [${order.restaurantName}] of order [${order.orderId}]`);
 
     // Use lodash to reate a copy of the "order_placed" event
     let data = _.clone(order);
