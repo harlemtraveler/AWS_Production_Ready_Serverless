@@ -5,7 +5,7 @@ const co = require('co');
 const AWS = require('aws-sdk');
 const kinesis = new AWS.Kinesis();
 const sns = new AWS.SNS();
-const getRecords = require('../lib/kinesis').getRecords();
+const getRecords = require('../lib/kinesis').getRecords;
 const streamName = process.env.order_events_stream;
 const topicArn = process.env.restaurants_notification_topic;
 
