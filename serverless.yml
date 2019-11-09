@@ -28,6 +28,7 @@ provider:
         - sns:Publish
       Resource: 
         - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification
+        - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification-retry
         - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:user-notification
 
 
@@ -84,6 +85,7 @@ functions:
     environment:
       order_events_stream: order-events
       restaurants_notification_topic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification
+      restaurants_notification_retry_topic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification-retry
 
   accept-order:
     handler: functions/accept-order.handler
@@ -111,6 +113,16 @@ functions:
           method: post
     environment:
       order_events_stream: order-events
+
+
+  retry-notify-restaurant:
+    handler: functions/retry-notify-restaurant.handler
+    events:
+      - sns: restaurant-notification-retry
+    environment:
+      order_events_stream: order-events
+      restaurants_notification_topic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification
+    onError: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification-dlq
 
 resources:
   Resources:
@@ -140,6 +152,12 @@ resources:
       Properties:
         DisplayName: restaurant-notification
         TopicName: restaurant-notification
+    
+    restaurantNotificationDLQTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: restaurant-notification-dlq
+        TopicName: restaurant-notification-dlq
     
     userNotificationTopic:
       Type: AWS::SNS::Topic
