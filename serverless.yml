@@ -102,6 +102,7 @@ functions:
           - sns:Publish
         Resource: 
           - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification
+          - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification-retry
 
   accept-order:
     handler: functions/accept-order.handler
@@ -171,7 +172,7 @@ functions:
         Action: 
           - sns:Publish
         Resource: 
-          - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification-retry
+          - arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:restaurant-notification
 
 
 resources:
