@@ -29,6 +29,7 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
+    "middy": "^0.30.4",
     "serverless": "^1.55.1",
     "serverless-iam-roles-per-function": "^2.0.2"
   }

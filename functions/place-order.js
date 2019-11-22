@@ -4,9 +4,16 @@ const co = require('co');
 const AWS = require('aws-sdk');
 const kinesis = new AWS.Kinesis();
 const chance = require('chance').Chance(); // installed as a prod dependency!!!
+const log = require('../lib/log');
+
 const streamName = process.env.order_events_stream;
 
 module.exports.handler = co.wrap(function* (event, context, callback) {
+  // Parse the request body ...i.e. stored in the "event" param
+  let body = JSON.parse(event.body);
+  // Add a DEBUG log after parsing the "handler" function request
+  log.debug('[*] Request body is a valid JSON', { requestBody: event.body });
+
   // Here, we're assuming that the restaurant's name is passed in body of POST
   let restaurantName = JSON.parse(event.body).restaurantName;
 
@@ -15,7 +22,10 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
 
   // Generate a new "orderId"
   let orderId = chance.guid();
-  console.log(`[+] placing order ID [${orderId}] to [${restaurantName}] from user [${userEmail}]`);
+
+  // console.log(`[+] placing order ID [${orderId}] to [${restaurantName}] from user [${userEmail}]`);
+  // Converted the "console.log()" cmd (*referenced above) to a "log.debug()" cmd:
+  log.debug(`[*] Placing order...`, { orderId, restaurantName, userEmail });
 
 	// The shape of the data blob
   let data = {
@@ -37,7 +47,8 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
   // Publish the Events to Kinesis using the "putRecord" function...which can yield on its Promise:
   yield kinesis.putRecord(putReq).promise();
 
-  console.log("[+] published 'order_palced' event to Kinesis");
+  // console.log("[+] published 'order_palced' event to Kinesis");
+  log.debug(`[*] published event to Kinesis...`, { eventName: 'order_palced' });
 
 	// Repsonse body expected
   let response = {

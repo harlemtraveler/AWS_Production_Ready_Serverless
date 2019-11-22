@@ -5,10 +5,25 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-iam-roles-per-function
 
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  logLevel:
+    prod: WARN
+    default: DEBUG
+  serverless-iam-roles-per-function:
+    defaultInherit: true
 
 provider:
   name: aws
   runtime: nodejs10.x
+  environment:
+    log_level: ${self:custom.logLevel.${self:custom.stage}, self:custom.logLevel.default}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cloudwatch:PutMetricData
+      Resource:
+        - '*'
 
 
 functions:

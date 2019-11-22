@@ -1,0 +1,22 @@
+{
+  "Records":[
+    {
+      "EventSource":"aws:sns",
+      "EventVersion":"1.0",
+      "EventSubscriptionArn":"arn:aws:sns:us-east-1:829622096880:restaurant-notification-retry:7d885e52-84d8-4d24-b909-6394f19fdbb8",
+      "Sns":{
+        "Type":"Notification",
+        "MessageId":"4109c782-3a7d-59fe-8de8-91c36296c610",
+        "TopicArn":"arn:aws:sns:us-east-1:829622096880:restaurant-notification-retry",
+        "Subject":null,
+        "Message":"{\"orderId\":\"7c91595c-fc95-5e32-834a-feb36adaf16d\",\"userEmail\":\"tjk315@gmail.com\",\"restaurantName\":\"Lil' Bits\",\"eventType\":\"order_placed\"}",
+        "Timestamp":"2019-11-10T00:15:39.573Z",
+        "SignatureVersion":"1",
+        "Signature":"lq5QFA0Ne+w2QnxDRuxQ0tuhjFgZThaAKXGmA7KVbOsTXtfSxcLD6ut0avYfEPjBI6U88t1PGzPKrLxamP+MSILkFlreuTvRIiAoN82BmS1THjQ4DsztwQfDeKAJdWZa1wDY7qgVpP3XpWQybb9q2J/xHrOhaFWACHO+TvNnyLL3wzYuP9v6znsECvP62e4OaZhvTkOVyTmjBbamjx2e69qUMRrgu/Inx+tPxDlB9TizE28aWnpI3wvagTTyWpok90ITgwZF53PPBnWQ31CVVMJehWXGjiHwO24gAUbUm6v2VH/0H2rAN+NrsPIiuJ66swisi0nOwUNY4XC3ojGHsA==",
+        "SigningCertUrl":"https://sns.us-east-1.amazonaws.com/SimpleNotificationService-6aad65c2f9911b05cd53efda11f913f9.pem",
+        "UnsubscribeUrl":"https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:829622096880:restaurant-notification-retry:7d885e52-84d8-4d24-b909-6394f19fdbb8",
+        "MessageAttributes":{}
+      }
+    }
+  ]
+}

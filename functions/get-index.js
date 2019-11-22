@@ -9,6 +9,9 @@ const http = require('superagent-promise')(require('superagent'), Promise);
 const aws4 = require('aws4');
 const URL = require('url');
 const awscred = Promise.promisifyAll(require('awscred'));
+const log = require('../lib/log');
+const middy = require('middy');
+const sampleLogging = require('../middleware/sample-logging');
 
 const awsRegion = process.env.AWS_Region;
 const cognitoUserPoolId = process.env.cognito_user_pool_id;
@@ -64,11 +67,19 @@ function* getRestaurants() {
   return (yield httpReq).body;
 }
 
-module.exports.handler = co.wrap(function* (event, context, callback) {
+const handler = co.wrap(function* (event, context, callback) {
   // loads HTML as a template
   let template = yield loadHtml();
+
+  // A quick DEBUG log
+  log.debug('[*] Loaded HTML tmeplate');
+
   // getRestaurants() is tentative
   let restaurants = yield getRestaurants();
+
+  // A DEBUG log after loading the restaurants
+  log.debug(`[*] Loaded ${restaurants.length} restaurants`);
+
   let dayOfWeek = days[new Date().getDay()];
   let view = {
     dayOfWeek, 
@@ -82,6 +93,9 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
   // loads template, passing restaurants as params
   let html = Mustache.render(template, view);
 
+  // A DEBUG log after generating the HTML
+  log.debug(`[*] Generated HTML [${html.length} bytes]`);
+
   const response = {
     statusCode: 200,
     body: html,
@@ -94,3 +108,6 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
   callback(null, response);
 
 });
+
+// The "sampleRate" is set to 50% of the time (1 out of 100 == 0.01):
+module.exports.handler = middy(handler).use(sampleLogging({ sampleRate: 0.01 }));

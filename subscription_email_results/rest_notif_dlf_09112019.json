@@ -1,0 +1,22 @@
+{
+  "Records":[
+    {
+      "EventSource":"aws:sns",
+      "EventVersion":"1.0",
+      "EventSubscriptionArn":"arn:aws:sns:us-east-1:829622096880:restaurant-notification-retry:7d885e52-84d8-4d24-b909-6394f19fdbb8",
+      "Sns":{
+        "Type":"Notification",
+        "MessageId":"5af261f6-b131-5c02-8565-37b7e8703e6b",
+        "TopicArn":"arn:aws:sns:us-east-1:829622096880:restaurant-notification-retry",
+        "Subject":null,
+        "Message":"{\"orderId\":\"03d86aac-d78a-553e-8156-4b472ebbe6e1\",\"userEmail\":\"tjk315@gmail.com\",\"restaurantName\":\"Fangtasia\",\"eventType\":\"order_placed\"}",
+        "Timestamp":"2019-11-10T00:17:05.577Z",
+        "SignatureVersion":"1",
+        "Signature":"hXxsT9oc0CjTKdgHJBSipULTr0B5+A7B8xCJq8ST95UsUwtccilnvWiKdFUeRc1l/KaPou1dNMAs8C2bf8QVIu6xX1JrK8CYjiHUEo7XflXptjEtkd9wVJ4y9DILEBJ1a/4z1B/ZV5YvjUQY2ar0Ebqun04YH4N9NIWtA730Djv676FWxD9GETmFpwolHIZI71i8NpaVRfAi+qvBZxupI6oQVdfdMtq6BKlBwdjp1b66np7ONFVVqtu1vTrdJ2tLp+7bVaVR96x1gPjmZgD2U8kjxBqRCsVi1PBBbX3kp/R3sOl67yVJNjHRcX4IZC1mAQgaEm5J5Mcgc5HDdQooiw==",
+        "SigningCertUrl":"https://sns.us-east-1.amazonaws.com/SimpleNotificationService-6aad65c2f9911b05cd53efda11f913f9.pem",
+        "UnsubscribeUrl":"https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:829622096880:restaurant-notification-retry:7d885e52-84d8-4d24-b909-6394f19fdbb8",
+        "MessageAttributes":{}
+      }
+    }
+  ]
+}

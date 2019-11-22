@@ -4,8 +4,11 @@ const co = require('co');
 const getRecords = require('../lib/kinesis').getRecords;
 const notify = require('../lib/notify').restaurantOfOrder;
 const retry = require('../lib/retry');
+const middy = require('middy');
+const sampleLogging = require('../middleware/sample-logging');
+const flushMetrics = require('../middleware/flush-metrics');
 
-module.exports.handler = co.wrap(function* (event, context, callback) {
+const handler = co.wrap(function* (event, context, callback) {
   // Placeholder function to get our example record, "notify-restaurant.json"
   let records = getRecords(event);
   // Use a filter to obtain ONLY the 'order_placed' events:
@@ -23,3 +26,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
   callback(null, '[*] All Done!');
 
 });
+
+module.exports.handler = middy(handler)
+  .use(sampleLogging({ sampleRate: 0.01 }))
+  .use(flushMetrics);
