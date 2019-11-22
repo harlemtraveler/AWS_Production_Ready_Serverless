@@ -7,8 +7,11 @@ const co = require('co');
 // i.e. => yield notify.restaurantOfOrder(order);
 // SOLUTION: Remove "restaurantOfOrder" either from the "require" statement OR the invocation
 const notify = require('../lib/notify');
+const middy = require('middy');
+const sampleLogging = require('../middleware/sample-logging');
+const flushMetrics = require('../middleware/flush-metrics');
 
-module.exports.handler = co.wrap(function* (event, context, callback) {
+const handler = co.wrap(function* (event, context, callback) {
   let order = JSON.parse(event.Records[0].Sns.Message);
   order.retried = true;
 
@@ -19,3 +22,7 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
     callback(err);
   }
 });
+
+module.exports.handler = middy(handler)
+  .use(sampleLogging({ sampleRate: 0.01 }))
+  .use(flushMetrics);
