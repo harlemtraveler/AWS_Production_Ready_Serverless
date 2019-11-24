@@ -38,6 +38,7 @@ functions:
       orders_api: https://ozk1g4x3w2.execute-api.us-east-1.amazonaws.com/dev/orders
       cognito_user_pool_id: us-east-1_CeZvkfvM4
       cognito_client_id: bu8i0bfbit2o1p1k1qdtplp60
+      async_metrics: true
     iamRoleStatements:
       - Effect: Allow
         Action: 
@@ -54,6 +55,7 @@ functions:
           authorizer: aws_iam
     environment:
       restaurants_table: restaurants
+      async_metrics: true
     iamRoleStatements:
       - Effect: Allow
         Action: 
@@ -72,6 +74,7 @@ functions:
             arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/us-east-1_CeZvkfvM4
     environment:
       restaurants_table: restaurants
+      async_metrics: true
     iamRoleStatements:
       - Effect: Allow
         Action: 
@@ -90,6 +93,7 @@ functions:
             arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/us-east-1_CeZvkfvM4
     environment:
       order_events_stream: order-events
+      async_metrics: true
     iamRoleStatements:
       - Effect: Allow
         Action: 
@@ -127,6 +131,7 @@ functions:
           method: post
     environment:
       order_events_stream: order-events
+      async_metrics: true
     iamRoleStatements:
       - Effect: Allow
         Action: 
@@ -162,6 +167,7 @@ functions:
           method: post
     environment:
       order_events_stream: order-events
+      async_metrics: true
     iamRoleStatements:
       - Effect: Allow
         Action: 
