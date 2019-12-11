@@ -5,6 +5,7 @@ const AWS = require('aws-sdk');
 const kinesis = new AWS.Kinesis();
 const chance = require('chance').Chance(); // installed as a prod dependency!!!
 const log = require('../lib/log');
+const cloudwatch = require('../lib/cloudwatch');
 
 const streamName = process.env.order_events_stream;
 
@@ -45,7 +46,10 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
 
 
   // Publish the Events to Kinesis using the "putRecord" function...which can yield on its Promise:
-  yield kinesis.putRecord(putReq).promise();
+  yield cloudwatch.trackExecTime(
+    'KinesisPutRecordLatency',
+    () => kinesis.putRecord(putReq).promise()
+  );
 
   // console.log("[+] published 'order_palced' event to Kinesis");
   log.debug(`[*] published event to Kinesis...`, { eventName: 'order_palced' });
