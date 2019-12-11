@@ -10,6 +10,7 @@ const aws4 = require('aws4');
 const URL = require('url');
 const awscred = Promise.promisifyAll(require('awscred'));
 const log = require('../lib/log');
+const cloudwatch = require('../lib/cloudwatch');
 const middy = require('middy');
 const sampleLogging = require('../middleware/sample-logging');
 
@@ -75,7 +76,10 @@ const handler = co.wrap(function* (event, context, callback) {
   log.debug('[*] Loaded HTML tmeplate');
 
   // getRestaurants() is tentative
-  let restaurants = yield getRestaurants();
+  let restaurants = yield cloudwatch.trackExecTime(
+    "GetRestayrantsLatency",
+    () => getRestaurants()
+  );
 
   // A DEBUG log after loading the restaurants
   log.debug(`[*] Loaded ${restaurants.length} restaurants`);
@@ -95,6 +99,8 @@ const handler = co.wrap(function* (event, context, callback) {
 
   // A DEBUG log after generating the HTML
   log.debug(`[*] Generated HTML [${html.length} bytes]`);
+
+  cloudwatch.incrCount('RestaurantsReturned', restaurants.length);
 
   const response = {
     statusCode: 200,
