@@ -6,11 +6,11 @@ const AWS     = require('aws-sdk');
 
 // CONFIGURE THESE!!!
 // ============================================
-const region = "insert_value";
-const accountId = "insert_value";
-const funcName = "insert_value";
-const retentionDays = 7;       // change this if you want
-const prefix = '/aws/lambda';  // use '/' if you want to process every log group
+const region = "us-east-1";
+const accountId = "829622096880";
+const funcName = "LogsToElasticsearch_business-search-es-2";
+const retentionDays = 180;       // change this if you want
+const prefix = '/aws/lambda/business-search';  // use '/' if you want to process every log group
 // ============================================
 
 AWS.config.region = region;
