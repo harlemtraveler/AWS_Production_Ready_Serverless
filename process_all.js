@@ -8,9 +8,9 @@ const AWS     = require('aws-sdk');
 // ============================================
 const region = "us-east-1";
 const accountId = "829622096880";
-// const funcName = "LogsToElasticsearch_business-search-es-2";
+const funcName = "LogsToElasticsearch_business-search-es-2";
 // const funcName = "TestLogsToESAndCWMetrics";
-const funcName = "LogsToAmazonESandCWMetrics";
+// const funcName = "LogsToAmazonESandCWMetrics";
 const retentionDays = 180;       // change this if you want
 const prefix = '/aws/lambda/business-search';  // use '/' if you want to process every log group
 // ============================================
@@ -41,8 +41,8 @@ let subscribe = co.wrap(function* (logGroupName) {
     destinationArn : destFuncArn,
     logGroupName   : logGroupName,
     filterName     : 'ship-logs',
-    filterPattern  : ''
-    // filterPattern  : '[timestamp=*Z, request_id="*-*", event]'
+    // filterPattern  : ''
+    filterPattern  : '[timestamp=*Z, request_id="*-*", event]'
   };
 
   try {
