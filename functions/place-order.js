@@ -36,8 +36,8 @@ module.exports.handler = co.wrap(function* (event, context, callback) {
     eventType: 'order_placed'
   };
 
-  // For the "putRecord" request, we need to: send JSON data && sue "orderId" as the partitionKey
-  // This is so all Events for thos order are processed in the same sequence (also all data is base64 auto encoded).
+  // For the "putRecord" request, we need to: send JSON data && use "orderId" as the partitionKey
+  // This is so all Events for those order are processed in the same sequence (also all data is base64 auto-encoded).
   let putReq = {
     Data: JSON.stringify(data),
     PartitionKey: orderId,
