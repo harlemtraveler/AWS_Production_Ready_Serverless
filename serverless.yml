@@ -210,8 +210,6 @@ functions:
               eventName:
                 - CreateDeployment
     environment:
-      # This implementation supports multiple SNS Topics as a comma separated (*cs) list:
-      # e.g. => "alarm_actions: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:NotifyMe,my2ndTopic,my3rdTopic,etc"
       alarm_actions: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:NotifyMe
       ok_actions: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:NotifyMe
     iamRoleStatements:
