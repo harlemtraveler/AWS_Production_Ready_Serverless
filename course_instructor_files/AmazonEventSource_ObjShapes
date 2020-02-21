@@ -1,0 +1,47 @@
+// Example #1 - Correct Event-Source/Rule Pair
+// Amazon EventBridge - Event Source
+
+{
+    "detail-type": "Ticket Created",
+    "source": "aws.partner/example.com/123",
+    "detail": {
+        "ticketId": "987654321",
+        "department": "billing",
+        "creator": "user12345"
+    }
+}
+
+// Amazon EventBridge Rule (simple)
+
+{
+    "source": ["aws.partner/example.com/123"]
+}
+
+// Amazon EventBridge Rule (*more detailed)
+
+{
+    "detail": {
+        "department": ["billing", "fulfillment"]
+    }
+}
+
+
+// Example 2 - Non-Matching Event-Source/Rule Pair
+// Amazon EventBridge - Event Source
+{
+    "detail-type": "Ticket Created",
+    "source": "aws.partner/example.com/123",
+    "detail": {
+        "ticketId": "987654321",
+        "department": "billing",
+        "creator": "user12345"
+    }
+}
+
+// Amazon EventBridge - Rule
+{
+    "detail-type": ["Ticket Resolved"]
+}
+
+
+// Example #3 - Event from Demo Video (*with Lambda)

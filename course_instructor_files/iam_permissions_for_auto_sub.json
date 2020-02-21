@@ -1,0 +1,159 @@
+{
+    "Version": "2012-10-17",
+    "Id": "default",
+    "Statement": [
+      {
+        "Sid": "InvokePermissionsForCWL9d3bfcd6324ee7a0040204761ada7ebe",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-notify-restaurant:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWL9fd0ef129c6e08f4ba92e814c01ebd2a",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-place-order:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWL93fe518b498836d5ad069d1fe3c1d361",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-accept-order:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWL9e2b470887a18100b8ef1bb9ac469a4a",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-fulfill-order:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWL4c86506226f880f84e295c6f0ed989e4",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-get-restaurants:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWL8fc32de71d088d3f1c04226349f57d8d",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-notify-user:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWLf8c86639adc01a5adc31ff563bb96549",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-search-restaurants:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWLa0bb63d891d24872ecf44c3d5ae52b51",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-retry-notify-restaurant:*"
+          }
+        }
+      },
+      {
+        "Sid": "InvokePermissionsForCWLc75c10278e820960f79fec662a2c04ae",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "logs.us-east-1.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:829622096880:function:TestLogsToESAndCWMetrics",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "829622096880"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:logs:us-east-1:829622096880:log-group:/aws/lambda/business-search-app-dev-get-index:*"
+          }
+        }
+      }
+    ]
+  }

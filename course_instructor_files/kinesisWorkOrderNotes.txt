@@ -1,0 +1,14 @@
+STEPS:
+1.) Customer places order - order_placed
+2.) Notifies restaurant - restaurants_notified
+3.) Restaurant accepts order - order_accepted
+4.) Customer confirmation - user_notified
+5.) Pick up - order_fulfilled
+
+
+    • We can model these steps as Events, each representing a transition to a new state in our order flow, from:
+        ◦ * “order_placed”
+        ◦ * “restaurants_notified”
+        ◦ * “order_accepted”
+        ◦ * “user_notified”
+        ◦ * “order_fulfilled"

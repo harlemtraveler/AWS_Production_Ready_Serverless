@@ -1,0 +1,14 @@
+POST / HTTP/1.1
+Host: kinesis.<region>.<domain>
+Content-Length: <PayloadSizeBytes>
+User-Agent: <UserAgentString>
+Content-Type: application/x-amz-json-1.1
+Authorization: <AuthParams>
+Connection: Keep-Alive 
+X-Amz-Date: <Date>
+X-Amz-Target: Kinesis_20131202.PutRecord
+{
+  "StreamName": "exampleStreamName",
+  "Data": "XzxkYXRhPl8x",
+  "PartitionKey": "partitionKey"
+}
