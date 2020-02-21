@@ -77,7 +77,7 @@ const handler = co.wrap(function* (event, context, callback) {
 
   // getRestaurants() is tentative
   let restaurants = yield cloudwatch.trackExecTime(
-    "GetRestayrantsLatency",
+    "GetRestaurantsLatency",
     () => getRestaurants()
   );
 
