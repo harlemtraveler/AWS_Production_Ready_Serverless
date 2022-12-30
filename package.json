@@ -21,7 +21,7 @@
     "co": "^4.6.0",
     "fs": "0.0.1-security",
     "lodash": "^4.17.15",
-    "mocha": "^6.2.1",
+    "mocha": "^10.2.0",
     "mustache": "^3.1.0",
     "serverless-pseudo-parameters": "^2.4.0",
     "superagent": "^5.1.0",
